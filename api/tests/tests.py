@@ -1,6 +1,7 @@
 from unittest import TestCase
 from api.models import Busca
 
+
 class TesteBusca(TestCase):
 
     def setUp(self):
