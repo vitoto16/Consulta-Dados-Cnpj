@@ -7,13 +7,16 @@ api = Api(app)
 
 app.config['JSON_AS_ASCII'] = False
 
+
 @api.route('/cnpj/<string:cnpj>')
+@api.doc(params={'cnpj': 'Um cnpj válido.'})
 class DadosTitular(Resource):
     def get(self, cnpj):
-        busca = Busca(cnpj)
-        busca.raspa_dados()
+        busca = Busca()
+        dados_titular = busca.raspa_dados(cnpj)
 
-        return jsonify(busca.dados_titular)
+        return jsonify(dados_titular)
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
